@@ -1,0 +1,131 @@
+import { motion } from 'motion/react';
+import { Instagram } from 'lucide-react';
+
+interface FooterProps {
+  onNavigateToSection?: (sectionId: string) => void;
+  onOpenPrivacy?: () => void;
+}
+
+export default function Footer({ onNavigateToSection, onOpenPrivacy }: FooterProps) {
+  return (
+    <footer className="bg-neutral-950 text-brand-cream py-10 md:py-16 border-t border-white/10">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="grid md:grid-cols-4 gap-4 md:gap-8 mb-4 md:mb-8">
+          <div className="col-span-1 md:col-span-2 flex flex-col items-center md:items-start text-center md:text-left">
+            <div className="mb-0">
+              <img 
+                src="https://lh3.googleusercontent.com/d/1g0FEjIt17kU6qlZvZ06Nj5Tqn2H6Vg2r" 
+                alt="Doces da Naty" 
+                className="h-40 sm:h-44 md:h-44 lg:h-52 w-auto object-contain select-none mx-auto md:mx-0"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          </div>
+
+          <div>
+            <h4 className="font-bold text-lg mb-6">Navegação</h4>
+            <ul className="space-y-4 text-brand-cream/60">
+              <li>
+                <a 
+                  href="#cursos" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (onNavigateToSection) {
+                      onNavigateToSection('cursos');
+                    } else {
+                      document.getElementById('cursos')?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }} 
+                  className="hover:text-brand-primary transition-colors"
+                >
+                  Nossos Cursos
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#sobre" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (onNavigateToSection) {
+                      onNavigateToSection('sobre');
+                    } else {
+                      document.getElementById('sobre')?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }} 
+                  className="hover:text-brand-primary transition-colors"
+                >
+                  Sobre a Naty
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#depoimentos" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (onNavigateToSection) {
+                      onNavigateToSection('depoimentos');
+                    } else {
+                      document.getElementById('depoimentos')?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }} 
+                  className="hover:text-brand-primary transition-colors"
+                >
+                  Depoimentos
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (onOpenPrivacy) {
+                      onOpenPrivacy();
+                    } else if (onNavigateToSection) {
+                      onNavigateToSection('top');
+                    } else {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                  }} 
+                  className="hover:text-brand-primary transition-colors"
+                >
+                  Política de Privacidade
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold text-lg mb-6">Contato</h4>
+            <ul className="space-y-4 text-brand-cream/60 mb-6">
+              <li className="flex items-center gap-2.5">
+                <Instagram size={20} className="text-brand-primary shrink-0" />
+                <a href="https://www.instagram.com/cursosdocesdanaty" target="_blank" rel="noopener noreferrer" className="hover:text-brand-primary transition-colors text-base leading-none">
+                  @cursosdocesdanaty
+                </a>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <Instagram size={20} className="text-brand-primary shrink-0" />
+                <a href="https://www.instagram.com/docesdanaty___" target="_blank" rel="noopener noreferrer" className="hover:text-brand-primary transition-colors text-base leading-none">
+                  @docesdanaty___
+                </a>
+              </li>
+            </ul>
+            <div className="flex gap-4">
+              <a href="https://www.instagram.com/cursosdocesdanaty" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-brand-cream/20 flex items-center justify-center hover:bg-brand-primary hover:border-brand-primary transition-all">
+                <Instagram size={20} />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="pt-12 border-t border-brand-cream/10 text-center text-brand-cream/40 text-sm space-y-1.5">
+          <p className="font-medium text-brand-cream/70 text-xs sm:text-sm">
+            CURSOS DOCES DA NATY LTDA • CNPJ: 40.931.678/0001-02
+          </p>
+          <p>© {new Date().getFullYear()} Doces da Naty. Todos os direitos reservados.</p>
+          <p className="text-xs text-brand-cream/30">Desenvolvido com carinho para alunas extraordinárias.</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
